@@ -30,8 +30,66 @@ echo 12. %class12%
 echo 13. %class13%
 echo ------------------------------------------------
 echo choose ac_class number:
-set /p avclass=
-set classname=class%avclass%
-call echo %%%classname%%%
+set /p num=
+set classname=class%num%
+call set avclass=%%%classname%%%
+set avclassParam=--av-class %avclass%
+echo.
+echo.
+echo.
 
+
+rem  并发线程
+echo --------------------并发数----------------------
+echo set concurrent tasks num(并发数):
+set /p concurrent=
+set threadParam=--concurrent-tasks %concurrent%
+echo ------------------------------------------------
+echo.
+echo.
+echo.
+
+rem  download-picture-timeout
+echo -------------------图片下载时限-----------------
+echo -------------------默认16s----------------------
+echo set timeout:
+set /p pictimeout=
+set timeoutParam=--timeout-download-picture %pictimeout%
+echo ------------------------------------------------
+
+
+rem  主题设置
+echo -------------------主题下载---------------------
+echo --------------default topics range 1 to 64------
+set /p topicrange=
+set topicParam=--topics-range %topicrange%
+echo ------------------------------------------------
+
+rem  下载地址
+echo -------------------下载设置---------------------
+echo ----------------defalut  c:\--------------------
+set /p savepath=
+set savepathParam=--saveas-path %savepath%
+echo ------------------------------------------------
+
+rem  hate 
+echo -------------------讨厌的主题-------------------
+set /p hatetopic=
+set hatetopicParam=--hate %hatetopic%
+echo ------------------------------------------------
+
+rem  like 
+echo -------------------喜欢的主题-------------------
+set /p liketopic=
+set liketopicParam=--like %liketopic%
+echo ------------------------------------------------
+
+rem  设置代理
+echo -------------------设置代理---------------------
+set /p proxy=
+set proxyParam=--proxy http://%proxy%
+echo ------------------------------------------------
+
+cls
+%cd%\bin\hardseed.exe  %savepathParam% %threadParam% %topicParam% %avclassParam% %timeoutParam% %hateParam% %likeParam% %proxyParam%
 pause
